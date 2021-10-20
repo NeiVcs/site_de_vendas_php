@@ -1,9 +1,10 @@
 <?php
 include("conexao.php");
+include("funcoes.php");
 
 $pesquisa = $_POST['busca'] ?? '';
             
-$sql = "SELECT * FROM jogos WHERE titulo LIKE '%$pesquisa%'";
+$sql = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%'";
 
 $dados = mysqli_query($conn, $sql);
 ?>
@@ -37,6 +38,9 @@ $dados = mysqli_query($conn, $sql);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cadastrar.php">Cadastrar</a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="sair.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
@@ -52,25 +56,27 @@ $dados = mysqli_query($conn, $sql);
             <div class='justify-content-center row'>
                 <?php
                     while ($linha = mysqli_fetch_assoc($dados)){
-                        $id = $linha['id'];
-                        $titulo = $linha['titulo'];
-                        $genero = $linha['genero'];
-                        $jogadores = $linha['jogadores'];
-                        $imagem = $linha['imagem'];
-             
+                        $id_produto = $linha['id_produto'];
+                        $titulo_produto = $linha['titulo_produto'];
+                        $genero_produto = $linha['genero_produto'];
+                        $preco_produto = $linha['preco_produto'];
+                        $imagem_produto = $linha['imagem_produto'];
+                        $id_empresa = $linha['id_empresa'];
+
                         echo"
                         <div style='width:250px; margin:10px 5px 10px 5px; border: 1px solid black; padding:2px; background-color:lightgray; border-radius:5px; box-shadow: 3px 3px 2px black;'>
-                            <img class='card-img-top' src='images/$imagem' alt='Card image' style='width:244px; height:244px'>
+                            <img class='card-img-top' src='images/$imagem_produto' alt='Card image' style='width:244px; height:244px'>
                             <div class='card-body'>
-                                <h3 class='card-title'>$titulo</h3>
-                                <h4 class='card-text'>$genero</h4>
-                                <p class='card-text'>$jogadores jogador(es)</p>
+                                <h3 class='card-title'>$titulo_produto</h3>
+                                <p class='card-text'>$genero_produto</p>
+                                <h4 class='card-text'>R$ $preco_produto</h4>
+                                <h4 class='card-text'>fk esconder $id_empresa</h4>
                             </div>
                             <div class='justify-content-center row'>
                                 <a href='#' class='btn btn-primary'>Jogar</a>
-                                <a href='atualizar.php?id=$id' class='btn btn-warning mx-2'>Editar</a>
+                                <a href='atualizar.php?id=$id_produto' class='btn btn-warning mx-2'>Editar</a>
                                 <a href='excluir.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
-                                onclick=" .'"' ."pegar_dados($id, '$titulo')" .'"' .">Apagar</a>
+                                onclick=" .'"' ."pegar_dados($id_produto, '$titulo_produto')" .'"' .">Apagar</a>
                             </div>
                         </div>   
                         "; 
@@ -81,10 +87,7 @@ $dados = mysqli_query($conn, $sql);
                 <p>NeiVcs 2021</p>
             </footer>
         </div>
-    </div>
-</body>
-</html>
-    
+    </div>    
     <div class="modal" id="confirma">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -116,6 +119,9 @@ $dados = mysqli_query($conn, $sql);
             document.getElementById('jogo1').value = titulo;
         }
     </script>
-
+</div>
+<?php
+print_r($_SESSION);exit;
+?>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 include("conexao.php");
+include("funcoes.php");
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ include("conexao.php");
                         <label style="color:white">Gênero:</label>
                         <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required><br>
                         <label style="color:white">Jogadores:</label>
-                        <input type="number" name="jogadores"class="form-control"  placeholder="Digite o número de players" required><br>
+                        <input type="number" name="preco"class="form-control"  placeholder="Digite o número de players" required><br>
                         <label style="color:white">Imagem:</label>
                         <input class="form-control" name="imagem" type="file" accept=".jpg"><br>
                         <input class="btn-success" type="submit">

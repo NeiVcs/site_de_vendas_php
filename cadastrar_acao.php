@@ -33,25 +33,26 @@
         <div style="background-image: url('images/background.jpg')">
             <div class="col">
                 <?php  
-                    include("conexao.php");    
+                    include("conexao.php");  
+                    include("funcoes.php");  
 
-                    $titulo = $_POST['titulo'];
-                    $genero = $_POST['genero'];
-                    $jogadores = $_POST['jogadores'];
+                    $titulo_produto = $_POST['titulo'];
+                    $genero_produto = $_POST['genero'];
+                    $preco_produto = $_POST['preco'];
                     
-                    $imagem = $_FILES['imagem'];
-                    $nome_imagem = $imagem['name'];
-                    mover_imagem($imagem);
+                    $imagem_produto = $_FILES['imagem'];
+                    $nome_imagem = $imagem_produto['name'];
+                    mover_imagem($imagem_produto);
 
 
 
-                    $sql = "INSERT INTO jogos (titulo , genero, jogadores, imagem) 
-                    VALUES ('$titulo' , '$genero', '$jogadores', '$nome_imagem')";
+                    $sql = "INSERT INTO produtos (titulo_produto , genero_produto, preco_produto, imagem_produto) 
+                    VALUES ('$titulo_produto' , '$genero_produto', '$preco_produto', '$nome_imagem')";
 
                     if(mysqli_query($conn, $sql)){
-                        mensagem("$titulo foi cadastrado com sucesso!","success");
+                        mensagem("$titulo_produto foi cadastrado com sucesso!","success");
                     }else
-                        mensagem("$titulo NÃO foi cadastrado!","danger");
+                        mensagem("$titulo_produto NÃO foi cadastrado!","danger");
                 ?>
             </div>
             <div class="justify-content-center row"><a href="index.php" class=" btn btn-success">Clique aqui para voltar</a></div>

@@ -1,5 +1,6 @@
 <?php
 include("conexao.php");
+include("funcoes.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +18,12 @@ include("conexao.php");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <?php
-    $id = $_GET['id'] ?? '';
-    $sql = "SELECT * FROM jogos WHERE id = $id";
+    $id_produto = $_GET['id'] ?? '';
+    $sql = "SELECT * FROM produtos WHERE id_produto = $id_produto";
 
     $dados = mysqli_query ($conn, $sql);
     $linha = mysqli_fetch_assoc($dados);
-    $imagem = $linha['imagem'];
+    $imagem_produto = $linha['imagem_produto'];
     ?>
 </head>
 <body style="background-color: gray">
@@ -51,18 +52,18 @@ include("conexao.php");
                             <?php
                                 echo"
                                     <div style='width:300px; display:block; margin-left: auto; margin-right: auto; margin-top: 15px; border: 1px solid black; padding:2px; background-color:lightgray; border-radius:5px; box-shadow: 3px 3px 2px black;'>
-                                        <img src='images/$imagem' alt='Card image' style='width:295px; height:300px'>
+                                        <img src='images/$imagem_produto' alt='Card image' style='width:295px; height:300px'>
                                     </div>" 
                             ?>
                         </div>
                         <label style="color:white">Titulo:</label>
-                        <input type="text" name="titulo" class="form-control" placeholder="Digite o título do jogo" required value="<?php echo $linha['titulo']; ?>"><br>
+                        <input type="text" name="titulo" class="form-control" placeholder="Digite o título do jogo" required value="<?php echo $linha['titulo_produto']; ?>"><br>
                         <label style="color:white">Gênero:</label>
-                        <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required value="<?php echo $linha['genero']; ?>"><br>
-                        <label style="color:white">Jogadores:</label>
-                        <input type="number" name="jogadores"class="form-control"  placeholder="Digite o número de players"required value="<?php echo $linha['jogadores']; ?>"><br>
+                        <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required value="<?php echo $linha['genero_produto']; ?>"><br>
+                        <label style="color:white">Preço:</label>
+                        <input type="number" name="preco"class="form-control"  placeholder="Digite o preço"required value="<?php echo $linha['preco_produto']; ?>"><br>
                         <input class="btn-success" type="submit">
-                        <input type="hidden" name="id" value="<?php echo $linha['id']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $linha['id_produto']; ?>">
                     </div>
                 </form>
             </div>

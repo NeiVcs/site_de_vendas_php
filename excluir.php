@@ -33,16 +33,18 @@
         <div style="background-image: url('images/background.jpg')">
             <div class="col">
                 <?php  
-                    include("conexao.php");    
-                    $id = $_POST['id'];
-                    $titulo = $_POST['titulo'];
+                    include("conexao.php");
+                    include("funcoes.php");
+
+                    $id_produto = $_POST['id'];
+                    $titulo_produto = $_POST['titulo'];
                     
-                    $sql = "DELETE from jogos WHERE id = $id";
+                    $sql = "DELETE from produtos WHERE id_produto = $id_produto";
 
                     if(mysqli_query($conn, $sql)){
-                        mensagem("$titulo excluido com sucesso!","success");
+                        mensagem("$titulo_produto excluido com sucesso!","success");
                     }else
-                        mensagem("$titulo NÃO excluido!","danger");
+                        mensagem("$titulo_produto NÃO excluido!","danger");
                 ?>
             </div>
             <div class="justify-content-center row"><a href="index.php" class=" btn btn-success">Clique aqui para voltar</a></div>

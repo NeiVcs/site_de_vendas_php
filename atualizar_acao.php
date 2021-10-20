@@ -33,18 +33,20 @@
         <div style="background-image: url('images/background.jpg')">
             <div class="col">
                 <?php  
-                    include("conexao.php");    
-                    $id = $_POST['id'];
-                    $titulo = $_POST['titulo'];
-                    $genero = $_POST['genero'];
-                    $jogadores = $_POST['jogadores'];
+                    include("conexao.php");
+                    include("funcoes.php");
+                    
+                    $id_produto = $_POST['id'];
+                    $titulo_produto = $_POST['titulo'];
+                    $genero_produto = $_POST['genero'];
+                    $preco_produto = $_POST['preco'];
 
-                    $sql = "UPDATE jogos set titulo =  '$titulo', genero = '$genero', jogadores = '$jogadores' WHERE id = $id";
+                    $sql = "UPDATE produtos set titulo_produto =  '$titulo_produto', genero_produto = '$genero_produto', preco_produto = '$preco_produto' WHERE id_produto = $id_produto";
 
                     if(mysqli_query($conn, $sql)){
-                        mensagem("$titulo atualizado com sucesso!","success");
+                        mensagem("$titulo_produto foi atualizado com sucesso!","success");
                     }else
-                        mensagem("$titulo NÃO atualizado!","danger");
+                        mensagem("$titulo_produto NÃO foi atualizado!","danger");
                 ?>
             </div>
             <div class="justify-content-center row"><a href="index.php" class=" btn btn-success">Clique aqui para voltar</a></div>
