@@ -11,19 +11,12 @@ include("funcoes.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
 
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <?php
-    $id_produto = $_GET['id'] ?? '';
-    $sql = "SELECT * FROM produtos WHERE id_produto = $id_produto";
-
-    $dados = mysqli_query ($conn, $sql);
-    $linha = mysqli_fetch_assoc($dados);
-    $imagem_produto = $linha['imagem_produto'];
-    ?>
 </head>
 <body style="background-color: gray">
     <div class="container">
@@ -45,24 +38,17 @@ include("funcoes.php");
         </nav>
         <div style="background-image: url('images/background.jpg')">
             <div class="col">
-                <form action="atualizar_acao.php" method="POST">
-                    <div class="form-group">                        
-                        <div class="row">
-                            <?php
-                                echo"
-                                    <div style='width:300px; display:block; margin-left: auto; margin-right: auto; margin-top: 15px; border: 1px solid black; padding:2px; background-color:lightgray; border-radius:5px; box-shadow: 3px 3px 2px black;'>
-                                        <img src='images/$imagem_produto' alt='Card image' style='width:295px; height:300px'>
-                                    </div>" 
-                            ?>
-                        </div>
+                <form action="cadastrar_jogo_acao.php" method="POST" enctype="multipart/form-data" >
+                    <div class="form-group">
                         <label style="color:white">Titulo:</label>
-                        <input type="text" name="titulo" class="form-control" placeholder="Digite o título do jogo" required value="<?php echo $linha['titulo_produto']; ?>"><br>
+                        <input type="text" name="titulo" class="form-control" placeholder="Digite o título do jogo" required><br>
                         <label style="color:white">Gênero:</label>
-                        <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required value="<?php echo $linha['genero_produto']; ?>"><br>
+                        <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required><br>
                         <label style="color:white">Preço:</label>
-                        <input type="number" name="preco"class="form-control"  placeholder="Digite o preço"required value="<?php echo $linha['preco_produto']; ?>"><br>
+                        <input type="number" name="preco"class="form-control"  placeholder="Digite o preço do jogo" required><br>
+                        <label style="color:white">Imagem:</label><br>
+                        <input class="text-light" name="imagem" type="file" accept=".jpg"><br><br><br>
                         <input class="btn btn-success" type="submit">
-                        <input type="hidden" name="id" value="<?php echo $linha['id_produto']; ?>">
                         <a href="index.php"><button type="button" class="btn btn-warning">Voltar</button></a>
                     </div>
                 </form>

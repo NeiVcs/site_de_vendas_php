@@ -27,13 +27,14 @@ $dados = mysqli_query($conn, $sql);
 <body style="background-color: gray">
     <div class="container">            
         <div class='justify-content-center row my-5'>
-            <div class="jumbotron bg-dark">                 
+            <div class="jumbotron bg-dark py-4">
+                <div class="text-light text-center">     
+                    <img src="images/logo.png" style="width:280px">
+                </div><br>       
                 <form action="login_acao.php" method="POST">
-                    <div class="text-light text-center">
-                        <p>colocar um logo aqui<p>
-                    </div>
+
                     <div>
-                        <h3 class="text-light">Seja bem-vindo!</h3>
+                        <h5 class="text-light">Seja bem-vindo!</h5>
                     </div>
 
                     <?php 
@@ -49,28 +50,25 @@ $dados = mysqli_query($conn, $sql);
                         <table class="text-light">
                         <tr>
                         <td><label>Usuário:</label></td>
-                        <td><input placeholder="CPF ou CNPJ" type="text" name="usuario" id="cod_jogo" value=""></td>
+                        <td><input placeholder="CPF ou CNPJ" type="text" name="usuario"></td>
                         </tr>
                         <tr>
                         <td><label>Senha:</label></td>
-                        <td><input type="text" name="senha" id="" value=""></td>
+                        <td><input type="text" name="senha"></td>
                         </tr>
                         </table><br>
                         <input type="submit" class="btn btn-success" value="Entrar"> 
-                        <button class="btn btn-sm text-light">Esqueci minha senha</button>
+                        <a href="trocar_senha" class="btn btn-sm text-light">Esqueci minha senha</a>
                     </div><br>
                     <div style="border: 1px white solid; padding:5px; border-radius:5px;">
                         <p class="text-light">Não tem cadastro? faça já sua conta!</p>
-                        <button type="button" class="btn btn-primary">Quero comprar</button>
-                        <button type="button" class="btn btn-primary">Quero Vender</button>
+                        <a href="cadastrar_usuario.php"><button type="button" class="btn btn-primary">Quero comprar</button></a>
+                        <a href="cadastrar_empresa.php"><button type="button" class="btn btn-primary">Quero vender</button></a>
                     </div>
                 </form>   
             </div>
         </div>
     </div>
-    <?php
-print_r($_SESSION);exit;
-?>
 </div>
 </body>
 </html>

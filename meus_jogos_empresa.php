@@ -4,21 +4,22 @@ include("funcoes.php");
 
 $user = $_SESSION['usuario'];
 
-$query1 = "SELECT * FROM clientes WHERE cpf_cliente = $user";
+$query1 = "SELECT * FROM empresas WHERE cnpj_empresa = $user";
 
 $informacoes = mysqli_query($conn, $query1);
 
 $linha2 = mysqli_fetch_assoc($informacoes);
 
-$usuario = $linha2['nome_cliente'];
-
+$usuario = $linha2['nome_empresa'];
+$id = $linha2['id_empresa'];
 
 
 $pesquisa = $_POST['busca'] ?? '';
             
-$query2 = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%'";
-
+$query2 = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%' and id_empresa = 2";
 $dados = mysqli_query($conn, $query2);
+$linha = mysqli_fetch_assoc($dados);
+
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +61,7 @@ $dados = mysqli_query($conn, $query2);
         <div style="background-image: url('images/background.jpg')">
             <nav class="navbar navbar-light">
             <p class="text-light"><?php echo "Ola <b>$usuario</b> seja bem-vindo!";?></p>
-                <form class="form-inline" action="index.php" method="POST">
+                <form class="form-inline" action="meus_jogos_empresa.php" method="POST">
                     <input class="form-control mr-sm-2" type="Search" aria-label="Search" name="busca" placeholder="Pesquise aqui">
                     <button class="btn btn-success my-2 my-sm-0" type="submit">buscar</button>
                 </form>

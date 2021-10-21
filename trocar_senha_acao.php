@@ -1,8 +1,3 @@
-<?php
-include("conexao.php");
-include("funcoes.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +5,6 @@ include("funcoes.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
-
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -38,20 +32,21 @@ include("funcoes.php");
         </nav>
         <div style="background-image: url('images/background.jpg')">
             <div class="col">
-                <form action="cadastrar_acao.php" method="POST" enctype="multipart/form-data" >
-                    <div class="form-group">
-                        <label style="color:white">Titulo:</label>
-                        <input type="text" name="titulo" class="form-control" placeholder="Digite o título do jogo" required><br>
-                        <label style="color:white">Gênero:</label>
-                        <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required><br>
-                        <label style="color:white">Jogadores:</label>
-                        <input type="number" name="preco"class="form-control"  placeholder="Digite o número de players" required><br>
-                        <label style="color:white">Imagem:</label>
-                        <input class="form-control" name="imagem" type="file" accept=".jpg"><br>
-                        <input class="btn-success" type="submit">
-                    </div>
-                </form>
+                <?php  
+                    include("conexao.php");
+                    
+                    $id_usuario = $_POST['usuario'];
+                    $senha_usuario = $_POST['senha'];
+
+                    $sql = "UPDATE clientes set senha_cliente = '$senha_usuario' WHERE cpf_cliente = $id_usuario";
+
+                    if(mysqli_query($conn, $sql)){
+                        mensagem("Senha atualizada com sucesso!","success");
+                    }else
+                        mensagem("Usuário não localizado","danger");
+                ?>
             </div>
+            <div class="justify-content-center row"><a href="index.php" class=" btn btn-success">Clique aqui para voltar</a></div>
             <footer class="col text-primary bg-dark">
                 <p>NeiVcs 2021</p>
             </footer>
