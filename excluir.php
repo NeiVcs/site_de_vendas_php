@@ -15,23 +15,26 @@
 <body style="background-color: gray">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="index.php">Jogos</a>
+            <a class="navbar-brand" href="meus_jogos_empresa.php">Jogos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Galeria</a>
+                        <a class="nav-link" href="meus_jogos_empresa.php">Meus jogos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastrar.php">Cadastrar</a>
+                        <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="sair.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
         </nav>
         <div style="background-image: url('images/background.jpg')">
-            <div class="col">
+            <div class="col"><br>
                 <?php  
                     include("conexao.php");
                     include("funcoes.php");
@@ -47,7 +50,7 @@
                         mensagem("$titulo_produto NÃO excluido!","danger");
                 ?>
             </div>
-            <div class="justify-content-center row"><a href="index.php" class=" btn btn-success">Clique aqui para voltar</a></div>
+            <div class="justify-content-center row"><a href="meus_jogos_empresa.php" class=" btn btn-success">Clique aqui para voltar</a></div><br>
             <footer class="col text-primary bg-dark">
                 <p>NeiVcs 2021</p>
             </footer>

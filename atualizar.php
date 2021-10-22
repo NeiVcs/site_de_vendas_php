@@ -28,17 +28,20 @@ include("funcoes.php");
 <body style="background-color: gray">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="index.php">Jogos</a>
+            <a class="navbar-brand" href="meus_jogos_empresa.php">Jogos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Galeria</a>
+                        <a class="nav-link" href="meus_jogos_empresa.php">Meus jogos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastrar.php">Cadastrar</a>
+                        <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="sair.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
@@ -63,7 +66,7 @@ include("funcoes.php");
                         <input type="number" name="preco"class="form-control"  placeholder="Digite o preço"required value="<?php echo $linha['preco_produto']; ?>"><br>
                         <input class="btn btn-success" type="submit">
                         <input type="hidden" name="id" value="<?php echo $linha['id_produto']; ?>">
-                        <a href="index.php"><button type="button" class="btn btn-warning">Voltar</button></a>
+                        <a href="meus_jogos_empresa.php"><button type="button" class="btn btn-warning">Voltar</button></a>
                     </div>
                 </form>
             </div>

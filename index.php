@@ -2,27 +2,17 @@
 include("conexao.php");
 include("funcoes.php");
 
-$user = $_SESSION['usuario'];
-
-$query1 = "SELECT * FROM clientes WHERE cpf_cliente = $user";
-
-$informacoes = mysqli_query($conn, $query1);
-
-$linha2 = mysqli_fetch_assoc($informacoes);
-
-$usuario = $linha2['nome_cliente'];
-
-
+$usuario = $_SESSION['usuario'];
 
 $pesquisa = $_POST['busca'] ?? '';
             
-$query2 = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%'";
+$query2 = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%' and quantidade_produto > 0";
 
 $dados = mysqli_query($conn, $query2);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,10 +36,10 @@ $dados = mysqli_query($conn, $query2);
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Galeria</a>
+                        <a class="nav-link" href="index.php">Loja</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
+                        <a class="nav-link" href="meus_jogos_usuario.php">Meus jogos</a>
                     </li>  
                     <li class="nav-item">
                         <a class="nav-link" href="sair.php">Sair</a>
@@ -64,7 +54,6 @@ $dados = mysqli_query($conn, $query2);
                     <input class="form-control mr-sm-2" type="Search" aria-label="Search" name="busca" placeholder="Pesquise aqui">
                     <button class="btn btn-success my-2 my-sm-0" type="submit">buscar</button>
                 </form>
-
             </nav>
         
             <div class='justify-content-center row'>
@@ -75,7 +64,7 @@ $dados = mysqli_query($conn, $query2);
                         $genero_produto = $linha['genero_produto'];
                         $preco_produto = $linha['preco_produto'];
                         $imagem_produto = $linha['imagem_produto'];
-                        $id_empresa = $linha['id_empresa'];
+                       // $id_empresa = $linha['id_empresa'];
 
                         echo"
                         <div style='width:250px; margin:10px 5px 10px 5px; border: 1px solid black; padding:2px; background-color:lightgray; border-radius:5px; box-shadow: 3px 3px 2px black;'>
@@ -84,13 +73,9 @@ $dados = mysqli_query($conn, $query2);
                                 <h3 class='card-title'>$titulo_produto</h3>
                                 <p class='card-text'>$genero_produto</p>
                                 <h4 class='card-text'>R$ $preco_produto</h4>
-                                <h4 class='card-text'>fk esconder $id_empresa</h4>
                             </div>
-                            <div class='justify-content-center row'>
-                                <a href='#' class='btn btn-primary'>Jogar</a>
-                                <a href='atualizar.php?id=$id_produto' class='btn btn-warning mx-2'>Editar</a>
-                                <a href='excluir.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
-                                onclick=" .'"' ."pegar_dados($id_produto, '$titulo_produto')" .'"' .">Apagar</a>
+                            <div class='justify-content-center'>
+                                <a href='comprar.php?id=$id_produto' class='btn btn-success btn-block'>Comprar</a>
                             </div>
                         </div>   
                         "; 

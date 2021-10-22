@@ -1,12 +1,6 @@
 <?php
 session_start();
 include("conexao.php");
-
-$pesquisa = $_POST['busca'] ?? '';
-            
-$sql = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%'";
-
-$dados = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -30,32 +24,32 @@ $dados = mysqli_query($conn, $sql);
             <div class="jumbotron bg-dark py-4">
                 <div class="text-light text-center">     
                     <img src="images/logo.png" style="width:280px">
-                </div><br>       
-                <form action="login_acao.php" method="POST">
+                </div><br>
 
-                    <div>
-                        <h5 class="text-light">Seja bem-vindo!</h5>
-                    </div>
+                <div>
+                    <h5 class="text-light">Seja bem-vindo!</h5>
+                </div>
 
-                    <?php 
-                        if(isset($_SESSION['não_autenticado'])):
-                    ?>  
-                        <div class="alert alert-danger">Login ou senha incorretos.</div>
-                    <?php
-                        endif;
-                        unset($_SESSION['não_autenticado']);
-                    ?>
-                  
+                <?php 
+                    if(isset($_SESSION['não_autenticado'])):
+                ?>  
+                    <div class="alert alert-danger">Login ou senha incorretos.</div>
+                <?php
+                    endif;
+                    unset($_SESSION['não_autenticado']);
+                ?>
+
+                <form action="login_acao.php" method="POST">  
                     <div style="border: 1px white solid; padding:5px; border-radius:5px;">
                         <table class="text-light">
-                        <tr>
-                        <td><label>Usuário:</label></td>
-                        <td><input placeholder="CPF ou CNPJ" type="text" name="usuario"></td>
-                        </tr>
-                        <tr>
-                        <td><label>Senha:</label></td>
-                        <td><input type="text" name="senha"></td>
-                        </tr>
+                            <tr>
+                                <td><label>Usuário:</label></td>
+                                <td><input placeholder="CPF ou CNPJ" type="text" name="usuario"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Senha:</label></td>
+                                <td><input type="text" name="senha"></td>
+                            </tr>
                         </table><br>
                         <input type="submit" class="btn btn-success" value="Entrar"> 
                         <a href="trocar_senha" class="btn btn-sm text-light">Esqueci minha senha</a>

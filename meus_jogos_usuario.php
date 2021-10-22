@@ -4,12 +4,20 @@ include("funcoes.php");
 
 $usuario = $_SESSION['usuario'];
 $id = $_SESSION['id'];
-
 $pesquisa = $_POST['busca'] ?? '';
-            
-$query = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%' and id_empresa = $id";
 
-$dados = mysqli_query($conn, $query);
+
+
+
+
+$query_lista = "SELECT produtos.id_produto, produtos.titulo_produto, produtos.genero_produto, produtos.imagem_produto FROM produtos
+INNER JOIN pedidos ON produtos.id_produto=pedidos.id_produto and pedidos.id_cliente=$id;";
+//$query_lista = "SELECT * FROM pedidos WHERE id_cliente = $id";
+//$query_produto = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%'" ";
+
+$dados_lista = mysqli_query($conn, $query_lista);
+//$dados = mysqli_query($conn, $query_produto);
+
 ?>
 
 <!DOCTYPE html>
@@ -30,17 +38,17 @@ $dados = mysqli_query($conn, $query);
 <body style="background-color: gray">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a href="meus_jogos_empresa.php"><img src="images/logo.png" style="width:150px"></a> 
+            <a href="index.php"><img src="images/logo.png" style="width:150px"></a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="meus_jogos_empresa.php">Meus jogos</a>
+                        <a class="nav-link" href="index.php">Loja</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
+                        <a class="nav-link" href="meus_jogos_usuario.php">Meus jogos</a>
                     </li>  
                     <li class="nav-item">
                         <a class="nav-link" href="sair.php">Sair</a>
@@ -51,7 +59,7 @@ $dados = mysqli_query($conn, $query);
         <div style="background-image: url('images/background.jpg')">
             <nav class="navbar navbar-light">
             <p class="text-light"><?php echo "Ola <b>$usuario</b> seja bem-vindo!";?></p>
-                <form class="form-inline" action="meus_jogos_empresa.php" method="POST">
+                <form class="form-inline" action="index.php" method="POST">
                     <input class="form-control mr-sm-2" type="Search" aria-label="Search" name="busca" placeholder="Pesquise aqui">
                     <button class="btn btn-success my-2 my-sm-0" type="submit">buscar</button>
                 </form>
@@ -60,13 +68,11 @@ $dados = mysqli_query($conn, $query);
         
             <div class='justify-content-center row'>
                 <?php
-                    while ($linha = mysqli_fetch_assoc($dados)){
+                    while ($linha = mysqli_fetch_assoc($dados_lista)){
                         $id_produto = $linha['id_produto'];
                         $titulo_produto = $linha['titulo_produto'];
                         $genero_produto = $linha['genero_produto'];
-                        $preco_produto = $linha['preco_produto'];
                         $imagem_produto = $linha['imagem_produto'];
-                        $id_empresa = $linha['id_empresa'];
 
                         echo"
                         <div style='width:250px; margin:10px 5px 10px 5px; border: 1px solid black; padding:2px; background-color:lightgray; border-radius:5px; box-shadow: 3px 3px 2px black;'>
@@ -74,12 +80,12 @@ $dados = mysqli_query($conn, $query);
                             <div class='card-body'>
                                 <h3 class='card-title'>$titulo_produto</h3>
                                 <p class='card-text'>$genero_produto</p>
-                                <h4 class='card-text'>R$ $preco_produto</h4>
+                                <h4 class='card-text'>R$ preço</h4>
                             </div>
                             <div class='justify-content-center row'>
-                                <a href='atualizar.php?id=$id_produto' class='btn btn-warning mx-2'>Editar</a>
+                                <a href='#' class='btn btn-primary mx-2'>Jogar</a>
                                 <a href='excluir.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
-                                onclick=" .'"' ."pegar_dados($id_produto, '$titulo_produto')" .'"' .">Excluir</a>
+                                onclick=" .'"' ."pegar_dados($id_produto, '$id_produto')" .'"' .">Apagar</a>
                             </div>
                         </div>   
                         "; 

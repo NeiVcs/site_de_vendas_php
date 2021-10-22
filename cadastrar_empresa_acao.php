@@ -32,6 +32,7 @@
         </nav>
         <div style="background-image: url('images/background.jpg')">
             <div class="col">
+                <br>
                 <?php  
                     include("conexao.php"); 
 
@@ -48,7 +49,7 @@
                         mensagem("$nome_empresa NÃO foi cadastrado!","danger");
                 ?>
             </div>
-            <div class="justify-content-center row"><a href="login.php" class=" btn btn-success">Clique aqui para voltar</a></div>
+            <div class="justify-content-center row"><a href="login.php" class=" btn btn-success">Clique aqui para voltar</a></div><br>
             <footer class="col text-primary bg-dark">
                 <p>NeiVcs 2021</p>
             </footer>
