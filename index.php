@@ -3,7 +3,7 @@ include("conexao.php");
 include("funcoes.php");
 
 $usuario = $_SESSION['usuario'];
-
+$validacao = $_SESSION['tipo'];
 $pesquisa = $_POST['busca'] ?? '';
             
 $query2 = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%' and quantidade_produto > 0";
@@ -17,8 +17,7 @@ $dados = mysqli_query($conn, $query2);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
-
+    <title>Só Games</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -64,7 +63,6 @@ $dados = mysqli_query($conn, $query2);
                         $genero_produto = $linha['genero_produto'];
                         $preco_produto = $linha['preco_produto'];
                         $imagem_produto = $linha['imagem_produto'];
-                       // $id_empresa = $linha['id_empresa'];
 
                         echo"
                         <div style='width:250px; margin:10px 5px 10px 5px; border: 1px solid black; padding:2px; background-color:lightgray; border-radius:5px; box-shadow: 3px 3px 2px black;'>
@@ -119,8 +117,5 @@ $dados = mysqli_query($conn, $query2);
         }
     </script>
 </div>
-<?php
-print_r($_SESSION);exit;
-?>
 </body>
 </html>

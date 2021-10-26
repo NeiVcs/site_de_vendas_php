@@ -3,12 +3,12 @@ include("conexao.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
 
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -29,7 +29,7 @@ include("conexao.php");
                         <label style="color:white">Nome:</label>
                         <input type="text" name="nome" class="form-control" placeholder="Digite seu nome" required><br>
                         <label style="color:white">CPF:</label>
-                        <input type="text" name="cpf"class="form-control"  placeholder="Digite seu CPF" required><br>
+                        <input type="number" name="cpf"class="form-control"  placeholder="Digite seu CPF" required><br>
                         <label style="color:white">Senha:</label>
                         <input type="password" name="senha"class="form-control"  placeholder="Digite uma senha" required><br>
                         <br><br>

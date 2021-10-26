@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -14,8 +14,8 @@
 </head>
 <body style="background-color: gray">
     <div class="container">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="meus_jogos_empresa.php">Jogos</a>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a href="meus_jogos_empresa.php"><img src="images/logo.png" style="width:150px"></a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +28,7 @@
                         <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="sair.php">Sair</a>
+                        <a class="nav-link" href="sair2.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
@@ -38,18 +38,24 @@
                 <br>
                 <?php  
                     include("conexao.php");  
-                    include("funcoes.php");  
+                    include("funcoes2.php");  
 
                     $titulo_produto = $_POST['titulo'];
                     $genero_produto = $_POST['genero'];
                     $preco_produto = $_POST['preco'];
+                    $quantidade_produto = 1;
                     $id_empresa = $_SESSION['id'];
+                    
                     $imagem_produto = $_FILES['imagem'];
                     $nome_imagem = $imagem_produto['name'];
                     mover_imagem($imagem_produto);
+                    if($nome_imagem == ""){
+                        $nome_imagem = "sem_imagem.jpg";
+                    }
 
-                    $query = "INSERT INTO produtos (titulo_produto , genero_produto, preco_produto, imagem_produto, id_empresa) 
-                    VALUES ('$titulo_produto' , '$genero_produto', '$preco_produto', '$nome_imagem', '$id_empresa')";
+
+                    $query = "INSERT INTO produtos (titulo_produto , genero_produto, preco_produto, imagem_produto, id_empresa, quantidade_produto) 
+                    VALUES ('$titulo_produto' , '$genero_produto', '$preco_produto', '$nome_imagem', '$id_empresa', '$quantidade_produto')";
                     if(mysqli_query($conn, $query)){
                         mensagem("$titulo_produto foi cadastrado com sucesso!","success");
                     }else

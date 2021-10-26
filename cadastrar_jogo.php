@@ -1,15 +1,15 @@
 <?php
 include("conexao.php");
-include("funcoes.php");
+include("funcoes2.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
 
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -20,8 +20,8 @@ include("funcoes.php");
 </head>
 <body style="background-color: gray">
     <div class="container">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="meus_jogos_empresa.php">Jogos</a>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a href="meus_jogos_empresa.php"><img src="images/logo.png" style="width:150px"></a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +34,7 @@ include("funcoes.php");
                         <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="sair.php">Sair</a>
+                        <a class="nav-link" href="sair2.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
@@ -48,9 +48,9 @@ include("funcoes.php");
                         <label style="color:white">Gênero:</label>
                         <input type="text" name="genero"class="form-control"  placeholder="Digite o gênero do jogo" required><br>
                         <label style="color:white">Preço:</label>
-                        <input type="number" name="preco"class="form-control"  placeholder="Digite o preço do jogo" required><br>
+                        <input type="number" min="0" name="preco"class="form-control"  placeholder="Digite o preço do jogo" required><br>
                         <label style="color:white">Imagem:</label><br>
-                        <input class="text-light" name="imagem" type="file" accept=".jpg"><br><br><br>
+                        <input class="text-light" name="imagem" type="file" accept=".image/*"><br><br><br>
                         <input class="btn btn-success" type="submit">
                         <a href="meus_jogos_empresa.php"><button type="button" class="btn btn-warning">Voltar</button></a>
                     </div>

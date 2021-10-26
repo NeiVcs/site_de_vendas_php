@@ -4,12 +4,12 @@ include("conexao.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -44,11 +44,11 @@ include("conexao.php");
                         <table class="text-light">
                             <tr>
                                 <td><label>Usuário:</label></td>
-                                <td><input placeholder="CPF ou CNPJ" type="text" name="usuario"></td>
+                                <td><input placeholder="CPF ou CNPJ" type="number" name="usuario"></td>
                             </tr>
                             <tr>
                                 <td><label>Senha:</label></td>
-                                <td><input type="text" name="senha"></td>
+                                <td><input placeholder="senha" type="password" name="senha"></td>
                             </tr>
                         </table><br>
                         <input type="submit" class="btn btn-success" value="Entrar"> 

@@ -6,27 +6,20 @@ $usuario = $_SESSION['usuario'];
 $id = $_SESSION['id'];
 $pesquisa = $_POST['busca'] ?? '';
 
-
-
-
-
 $query_lista = "SELECT produtos.id_produto, produtos.titulo_produto, produtos.genero_produto, produtos.imagem_produto FROM produtos
 INNER JOIN pedidos ON produtos.id_produto=pedidos.id_produto and pedidos.id_cliente=$id;";
-//$query_lista = "SELECT * FROM pedidos WHERE id_cliente = $id";
-//$query_produto = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%'" ";
 
 $dados_lista = mysqli_query($conn, $query_lista);
-//$dados = mysqli_query($conn, $query_produto);
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -80,12 +73,11 @@ $dados_lista = mysqli_query($conn, $query_lista);
                             <div class='card-body'>
                                 <h3 class='card-title'>$titulo_produto</h3>
                                 <p class='card-text'>$genero_produto</p>
-                                <h4 class='card-text'>R$ preço</h4>
                             </div>
                             <div class='justify-content-center row'>
-                                <a href='#' class='btn btn-primary mx-2'>Jogar</a>
-                                <a href='excluir.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
-                                onclick=" .'"' ."pegar_dados($id_produto, '$id_produto')" .'"' .">Apagar</a>
+                                <a data-toggle='modal' data-target='#trolei' class='btn btn-primary mx-2'>Jogar</a>
+                                <a href='excluir_jogo_usuario.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
+                                onclick=" .'"' ."pegar_dados($id_produto, '$titulo_produto')" .'"' .">Excluir</a>
                             </div>
                         </div>   
                         "; 
@@ -97,6 +89,7 @@ $dados_lista = mysqli_query($conn, $query_lista);
             </footer>
         </div>
     </div>    
+
     <div class="modal" id="confirma">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -106,7 +99,7 @@ $dados_lista = mysqli_query($conn, $query_lista);
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
-                <form action="excluir.php" method="POST">
+                <form action="excluir_jogo_usuario.php" method="POST">
                     <div class="modal-body">
                         <p>Deseja realmente excluir <b id="titulo"></b> definitivamente da sua biblioteca?</p>
                     </div>
@@ -121,6 +114,24 @@ $dados_lista = mysqli_query($conn, $query_lista);
         </div>
     </div>
 
+    <div class="modal" id="trolei">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">sóquenão...</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <img src="images/atencao.jpg"></img>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Aceitar e voltar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         function pegar_dados(id, titulo){
             document.getElementById('titulo').innerHTML = titulo;
@@ -129,8 +140,5 @@ $dados_lista = mysqli_query($conn, $query_lista);
         }
     </script>
 </div>
-<?php
-print_r($_SESSION);exit;
-?>
 </body>
 </html>

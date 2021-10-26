@@ -3,12 +3,12 @@ include("conexao.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
 
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -29,7 +29,7 @@ include("conexao.php");
                         <label style="color:white">Nome da empresa:</label>
                         <input type="text" name="nome" class="form-control" placeholder="Digite o nome da empresa" required><br>
                         <label style="color:white">CNPJ:</label>
-                        <input type="text" name="cnpj"class="form-control"  placeholder="Digite o CNPJ da empresa" required><br>
+                        <input type="number" name="cnpj"class="form-control"  placeholder="Digite o CNPJ da empresa" required><br>
                         <label style="color:white">Senha:</label>
                         <input type="password" name="senha"class="form-control"  placeholder="Digite uma senha" required><br>
                         <br><br>

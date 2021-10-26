@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 <body style="background-color: gray">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="meus_jogos_empresa.php">Jogos</a>
+            <a href="meus_jogos_empresa.php"><img src="images/logo.png" style="width:150px"></a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +28,7 @@
                         <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="sair.php">Sair</a>
+                        <a class="nav-link" href="sair2.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
@@ -38,7 +38,7 @@
                 <br>
                 <?php  
                     include("conexao.php");
-                    include("funcoes.php");
+                    include("funcoes2.php");
                     
                     $id_produto = $_POST['id'];
                     $titulo_produto = $_POST['titulo'];

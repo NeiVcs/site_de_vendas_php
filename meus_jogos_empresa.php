@@ -1,24 +1,24 @@
 <?php
 include("conexao.php");
-include("funcoes.php");
+include("funcoes2.php");
 
 $usuario = $_SESSION['usuario'];
 $id = $_SESSION['id'];
-
+$validacao = $_SESSION['tipo'];
 $pesquisa = $_POST['busca'] ?? '';
             
-$query = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%' and id_empresa = $id";
+$query = "SELECT * FROM produtos WHERE titulo_produto LIKE '%$pesquisa%' and id_empresa = $id and quantidade_produto > 0";
 
 $dados = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Só Games</title>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -43,7 +43,7 @@ $dados = mysqli_query($conn, $query);
                         <a class="nav-link" href="cadastrar_jogo.php">Cadastrar</a>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="sair.php">Sair</a>
+                        <a class="nav-link" href="sair2.php">Sair</a>
                     </li>   
                 </ul>
             </div>  
@@ -78,7 +78,7 @@ $dados = mysqli_query($conn, $query);
                             </div>
                             <div class='justify-content-center row'>
                                 <a href='atualizar.php?id=$id_produto' class='btn btn-warning mx-2'>Editar</a>
-                                <a href='excluir.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
+                                <a href='excluir_jogo_empresa.php' class='btn btn-danger' data-toggle='modal' data-target='#confirma' 
                                 onclick=" .'"' ."pegar_dados($id_produto, '$titulo_produto')" .'"' .">Excluir</a>
                             </div>
                         </div>   
@@ -100,12 +100,12 @@ $dados = mysqli_query($conn, $query);
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
-                <form action="excluir.php" method="POST">
+                <form action="excluir_jogo_empresa.php" method="POST">
                     <div class="modal-body">
                         <p>Deseja realmente excluir <b id="titulo"></b> definitivamente da sua biblioteca?</p>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success" value="Sim, este jogo é horrivel">
+                        <input type="submit" class="btn btn-success" value="Sim, não quero mais vender este jogo">
                         <input type="hidden" name="id" id="cod_jogo" value="">
                         <input type="hidden" name="titulo" id="jogo1" value="">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
@@ -123,8 +123,5 @@ $dados = mysqli_query($conn, $query);
         }
     </script>
 </div>
-<?php
-print_r($_SESSION);exit;
-?>
 </body>
 </html>

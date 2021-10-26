@@ -3,7 +3,7 @@ include("conexao.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,7 @@ include("conexao.php");
                 <form action="trocar_senha_acao.php" method="POST">
                     <div class="form-group">                        
                         <label style="color:white">Usuario:</label>
-                        <input type="text" name="usuario"class="form-control"  placeholder="Digite seu CPJ ou CNPJ" required><br>
+                        <input type="number" name="usuario"class="form-control"  placeholder="Digite seu CPJ ou CNPJ" required><br>
                         <label style="color:white">Senha:</label>
                         <input type="password" name="senha"class="form-control"  placeholder="Digite a nova senha"required><br>
                         <input class="btn btn-success" type="submit">
