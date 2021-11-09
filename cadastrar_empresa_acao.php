@@ -28,16 +28,20 @@
                     $validacao_documento = strlen($cnpj_empresa);
                     $senha_empresa = $_POST['senha'];
                     
+                    $query = "SELECT id_empresa from empresas WHERE cnpj_empresa = '{$cnpj_empresa}'";
+                    $dados = mysqli_query($conn, $query);
+                    $linha = mysqli_fetch_assoc($dados);
+                    $row = mysqli_num_rows($dados);
+
                     $query = "INSERT INTO empresas (nome_empresa , cnpj_empresa, senha_empresa) 
                     VALUES ('$nome_empresa' , '$cnpj_empresa', '$senha_empresa')";
 
-                    if($validacao_documento==14){
+                    if($validacao_documento==14 && !$row == 1){
                         if(mysqli_query($conn, $query)){
                             mensagem("$nome_empresa foi cadastrado com sucesso!","success");}
 
                     }else
-                        mensagem("$nome_empresa NÃO foi cadastrado! As informações passadas estão incorretas.","danger");
-                    echo $validacao_documento;
+                        mensagem("$nome_empresa NÃO foi cadastrado! As informações passadas estão incorretas ou já existe cadastro neste CNPJ.","danger");
                 ?>
             </div>
             <div class="justify-content-center row"><a href="login.php" class=" btn btn-success">Clique aqui para voltar</a></div><br>

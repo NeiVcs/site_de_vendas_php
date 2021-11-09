@@ -28,16 +28,20 @@
                     $validacao_documento = strlen($cpf_cliente);
                     $senha_cliente = $_POST['senha'];
                     
+                    $query = "SELECT id_cliente from clientes WHERE cpf_cliente = '{$cpf_cliente}'";
+                    $dados = mysqli_query($conn, $query);
+                    $linha = mysqli_fetch_assoc($dados);
+                    $row = mysqli_num_rows($dados);
+                    
                     $query = "INSERT INTO clientes (nome_cliente , cpf_cliente, senha_cliente) 
                     VALUES ('$nome_cliente' , '$cpf_cliente', '$senha_cliente')";
 
-                    if($validacao_documento==11){
+                    if($validacao_documento==11 && !$row == 1){
                         if(mysqli_query($conn, $query)){
                             mensagem("$nome_cliente foi cadastrado com sucesso!","success");}
 
                     }else
-                        mensagem("$nome_cliente NÃO foi cadastrado! As informações passadas estão incorretas.","danger");
-                    echo $validacao_documento;
+                        mensagem("$nome_cliente NÃO foi cadastrado! As informações passadas estão incorretas ou já existe cadastro neste CPF.","danger");
 
                 ?>
             </div>
