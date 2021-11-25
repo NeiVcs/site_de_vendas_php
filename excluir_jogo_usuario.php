@@ -37,7 +37,7 @@
             <div class="col"><br>
                 <?php  
                     include("conexao.php");
-                    include("funcoes2.php");
+                    include("funcoes.php");
 
                     $id_cliente = $_SESSION['id'];
                     $id_produto = $_POST['id'];

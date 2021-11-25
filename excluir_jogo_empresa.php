@@ -39,10 +39,11 @@
                     include("conexao.php");
                     include("funcoes2.php");
 
+                    $id_empresa = $_SESSION['id'];
                     $id_produto = $_POST['id'];
                     $titulo_produto = $_POST['titulo'];
                     
-                    $query = "UPDATE produtos set quantidade_produto =  0 WHERE id_produto = $id_produto";
+                    $query = "DELETE from produtos WHERE id_produto = $id_produto and id_empresa = $id_empresa";
 
                     if(mysqli_query($conn, $query)){
                         mensagem("$titulo_produto excluido com sucesso!","success");
